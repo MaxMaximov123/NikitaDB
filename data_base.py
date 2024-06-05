@@ -275,8 +275,9 @@ class DB:
 
                 hti = Html2Image()
 
+                chrome_path = "/usr/bin/google-chrome"  # Убедитесь, что путь правильный
                 hti.browser.flags = ['--no-sandbox']
-                # hti.browser.path = '/usr/bin/google-chrome'
+                hti.browser.path = chrome_path
 
                 hti.screenshot(html_str=html, save_as=f'schedule_{login}_{password}.png')
 
