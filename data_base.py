@@ -10,6 +10,12 @@ import re
 import os
 
 
+hti = Html2Image()
+
+chrome_path = "/usr/bin/google-chrome"  # Убедитесь, что путь правильный
+hti.browser.flags = ['--no-sandbox']
+hti.browser.path = chrome_path
+
 def extract_nonce(text):
     pattern = r'var filterHome = \{.*"nonce":"([^"]+)".*\}'
 
@@ -182,7 +188,7 @@ class DB:
                     }, "user_id = ?", (user_id, )
                 )
 
-                hti = Html2Image()
+                # hti = Html2Image()
 
                 hti.screenshot(html_str=html, save_as=f'assessments_{login}_{password}.png')
 
@@ -272,12 +278,6 @@ class DB:
                         "schedule": html
                     }, "user_id = ?", (user_id,)
                 )
-
-                hti = Html2Image()
-
-                chrome_path = "/usr/bin/google-chrome"  # Убедитесь, что путь правильный
-                hti.browser.flags = ['--no-sandbox']
-                hti.browser.path = chrome_path
 
                 hti.screenshot(html_str=html, save_as=f'schedule_{login}_{password}.png')
 
