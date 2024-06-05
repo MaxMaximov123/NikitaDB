@@ -275,6 +275,9 @@ class DB:
 
                 hti = Html2Image()
 
+                hti.browser.flags = ['--no-sandbox']
+                # hti.browser.path = '/usr/bin/google-chrome'
+
                 hti.screenshot(html_str=html, save_as=f'schedule_{login}_{password}.png')
 
                 return f'schedule_{login}_{password}.png'
