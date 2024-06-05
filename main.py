@@ -176,7 +176,7 @@ def handle_student_options(message):
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
             markup.add('Назад', 'Изменить логин и пароль')
             bot.send_message(message.chat.id, status, parse_mode='HTML',  reply_markup=markup)
-            bot.register_next_step_handler(message, handle_student_menu)
+            bot.register_next_step_handler(message, handle_student_menu_assessments)
         else:
             bot.send_photo(message.chat.id, open(status, 'rb'))
             student_menu(message)
@@ -192,7 +192,7 @@ def handle_student_options(message):
             markup = types.ReplyKeyboardMarkup(one_time_keyboard=True, resize_keyboard=True)
             markup.add('Назад', 'Изменить логин и пароль')
             bot.send_message(message.chat.id, status, parse_mode='HTML',  reply_markup=markup)
-            bot.register_next_step_handler(message, handle_student_menu)
+            bot.register_next_step_handler(message, handle_student_menu_schedule)
         else:
             bot.send_photo(message.chat.id, open(status, 'rb'))
             student_menu(message)
@@ -202,10 +202,22 @@ def handle_student_options(message):
 def handle_student_menu(message):
     if message.text == 'Назад':
         student_menu(message)
+
+def handle_student_menu_assessments(message):
+    if message.text == 'Назад':
+        student_menu(message)
     elif message.text == 'Изменить логин и пароль':
         bot.send_message(message.chat.id,
                          'Введите логин и пароль от сайта КАИ через запятую и пробел')
-        bot.register_next_step_handler(message, handle_student_auth)
+        bot.register_next_step_handler(message, handle_student_auth_assessments)
+
+def handle_student_menu_schedule(message):
+    if message.text == 'Назад':
+        student_menu(message)
+    elif message.text == 'Изменить логин и пароль':
+        bot.send_message(message.chat.id,
+                         'Введите логин и пароль от сайта КАИ через запятую и пробел')
+        bot.register_next_step_handler(message, handle_student_auth_schedule)
 
 
 def handle_student_auth_assessments(message):
