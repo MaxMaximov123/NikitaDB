@@ -280,7 +280,7 @@ class DB:
                 return f'schedule_{login}_{password}.png'
         except Exception as e:
             print(e)
-            return f'Неверный логин или пароль или нет данных об оценках'
+            return f'Неверный логин или пароль или нет данных о расписании'
 
     def get_conferences(self, user_id):
         r = requests.get('https://na-konferencii.ru/')
